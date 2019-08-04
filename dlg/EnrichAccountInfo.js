@@ -22,7 +22,7 @@ exports.do = (req) => {
             // Get the player tag
             let tag = req.body.tag.replace('#', '%23');
 
-            console.log('Authorization': 'Bearer ' + key);
+            console.log('Authorization: Bearer ' + key);
 
             // Prepare the call
             let httpReq = {
