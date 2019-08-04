@@ -15,7 +15,7 @@ exports.do = (req) => {
 
     return new Promise((success, failure) => {
 
-        let email = req.bodys.user;
+        let email = req.body.user;
 
         // VAlidation 
         if (!email) { failure({ code: 400, message: '"user" is a mandatory field' }); return; }
