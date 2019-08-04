@@ -25,6 +25,9 @@ exports.get = (correlationId) => {
             // If problems
             if (!data) { failure({ code: 500, message: 'No box found in LUPIN' }); return; }
 
+            // Cache
+            cachedKey = data.content;
+
             // Otherwise get the key 
             success({key: data.content});
 
