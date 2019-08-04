@@ -1,6 +1,7 @@
 var mongo = require('mongodb');
 var config = require('../config');
 var converter = require('../conv/AccountConverter');
+var enrichAccountInfo = require('./EnrichAccountInfo');
 
 var MongoClient = mongo.MongoClient;
 
@@ -29,6 +30,12 @@ exports.do = (req) => {
                 db.close();
 
                 success({ id: res.insertedId });
+
+                // Add some info to req
+                req.body.accountId = res.insertedId;
+
+                // Get additional info from CoC API
+                enrichAccountInfo.do(req);
 
             });
         });
