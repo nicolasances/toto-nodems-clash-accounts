@@ -32,8 +32,6 @@ exports.setAccountCurrent = (current) => {
  */
 exports.enrichAccount = (data) => {
 
-    console.log(data);
-
     return {
         $set: {
             clan: {

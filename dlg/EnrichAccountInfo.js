@@ -22,9 +22,6 @@ exports.do = (req) => {
             // Get the player tag
             let tag = req.body.tag.replace('#', '%23');
 
-            console.log(key.key);
-            
-
             // Prepare the call
             let httpReq = {
                 url: 'https://api.clashofclans.com/v1/players/' + tag,
@@ -41,11 +38,13 @@ exports.do = (req) => {
                 // In case of error fail
                 if (err != null) { failure({ code: 500, message: err }); return; }
 
+                let cocPlayer = JSON.parse(body);
+
                 // Otherwise, update the account data
-                return MongoClient.connect(config.mongoUrl, function (err, db) {
+                return MongoClient.connect(config.mongoUrl, (err, db) => {
 
                     // Update 
-                    db.db(config.dbName).collection(config.collections.accounts).updateOne({ _id: new mongo.ObjectId(req.body.accountId) }, converter.enrichAccount(body), function (err, res) {
+                    db.db(config.dbName).collection(config.collections.accounts).updateOne({ _id: new mongo.ObjectId(req.body.accountId) }, converter.enrichAccount(cocPlayer), function (err, res) {
 
                         db.close();
 
