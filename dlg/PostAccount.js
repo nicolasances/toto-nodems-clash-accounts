@@ -7,7 +7,7 @@ var MongoClient = mongo.MongoClient;
 /**
  * Posts a new account. Will save it as "not current"
  * Requires:
- *  - req.headers['userEmail']     : the email of the user
+ *  - req.query.user               : the email of the user
  *  - tag                          : of the account
  *  - name                         : name of the account 
  */
@@ -15,10 +15,10 @@ exports.do = (req) => {
 
     return new Promise((success, failure) => {
 
-        let email = req.headers['userEmail'];
+        let email = req.query.user;
 
         // VAlidation 
-        if (!email) {failure({code: 400, message: 'Please provide a userEmail HTTP header'}); return; }
+        if (!email) { failure({ code: 400, message: '"user" is a required query param' }); return; }
         if (!req.body.tag) { failure({ code: 400, message: '"tag" is a mandatory field' }); return; }
         if (!req.body.name) { failure({ code: 400, message: '"name" is a mandatory field' }); return; }
 

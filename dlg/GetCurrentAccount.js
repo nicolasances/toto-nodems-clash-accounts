@@ -7,16 +7,16 @@ var MongoClient = mongo.MongoClient;
 /**
  * Gets the current account 
  * Requires: 
- *  - req.headers['userEmail']  : the user email 
+ *  - req.query.user  : the user email 
  */
 exports.do = (req) => {
 
     return new Promise((success, failure) => {
 
-        let email = req.headers['userEmail'];
+        let email = req.query.user;
 
         // Validation
-        if (!email) { failure({ code: 400, message: 'Please provide a userEmail HTTP header' }); return; }
+        if (!email) { failure({ code: 400, message: '"user" is a required query param' }); return; }
 
         return MongoClient.connect(config.mongoUrl, function (err, db) {
 

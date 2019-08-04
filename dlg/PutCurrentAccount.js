@@ -7,7 +7,7 @@ var MongoClient = mongo.MongoClient;
 /**
  * Sets the specified account as the current account for the user
  * Requires:
- *  - req.headers['userEmail']  : the user email
+ *  - req.query.user            : the user email
  *  - req.body.accountId        : the id of the account
  */
 exports.do = (req) => {
@@ -17,7 +17,7 @@ exports.do = (req) => {
         let email = req.headers['userEmail'];
 
         // VAlidation 
-        if (!email) { failure({ code: 400, message: 'Please provide a userEmail HTTP header' }); return; }
+        if (!email) { failure({ code: 400, message: '"user" is a required query param' }); return; }
         if (!req.body.accountId) { failure({ code: 400, message: '"accountId" is a mandatory field' }); return; }
 
         return MongoClient.connect(config.mongoUrl, function (err, db) {
