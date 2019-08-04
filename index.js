@@ -4,6 +4,7 @@ var getAccounts = require('./dlg/GetAccounts');
 var postAccount = require('./dlg/PostAccount');
 var putCurrentAccount = require('./dlg/PutCurrentAccount');
 var getCurrentAccount = require('./dlg/GetCurrentAccount');
+var deleteAccount = require('./dlg/DeleteAccount');
 
 var apiName = 'clash-accounts';
 
@@ -13,5 +14,6 @@ api.path('GET', '/accounts', getAccounts);
 api.path('POST', '/accounts', postAccount);
 api.path('PUT', '/accounts/current', putCurrentAccount);
 api.path('GET', '/accounts/current', getCurrentAccount);
+api.path('DELETE', '/accounts/:id', deleteAccount);
 
 api.listen();
