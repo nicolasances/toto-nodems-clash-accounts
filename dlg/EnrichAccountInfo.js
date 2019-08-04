@@ -22,6 +22,9 @@ exports.do = (req) => {
             // Get the player tag
             let tag = req.body.tag.replace('#', '%23');
 
+            console.log(key.key);
+            
+
             // Prepare the call
             let httpReq = {
                 url: 'https://api.clashofclans.com/v1/players/' + tag,
