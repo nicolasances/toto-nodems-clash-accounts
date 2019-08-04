@@ -1,6 +1,8 @@
 
 exports.accountTO = (doc) => {
 
+    if (doc == null) return {};
+
     return {
         id: doc._id,
         user: doc.user,
