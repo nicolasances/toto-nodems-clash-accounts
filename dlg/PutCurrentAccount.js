@@ -14,10 +14,10 @@ exports.do = (req) => {
 
     return new Promise((success, failure) => {
 
-        let email = req.headers['userEmail'];
+        let email = req.body.user;
 
         // VAlidation 
-        if (!email) { failure({ code: 400, message: '"user" is a required query param' }); return; }
+        if (!email) { failure({ code: 400, message: '"user" is a mandatory field' }); return; }
         if (!req.body.accountId) { failure({ code: 400, message: '"accountId" is a mandatory field' }); return; }
 
         return MongoClient.connect(config.mongoUrl, function (err, db) {
