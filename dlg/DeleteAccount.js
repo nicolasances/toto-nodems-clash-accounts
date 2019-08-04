@@ -15,7 +15,7 @@ exports.do = (req) => {
         return MongoClient.connect(config.mongoUrl, function (err, db) {
 
             // Set the current state to TRUE
-            db.db(config.dbName).collection(config.collections.accounts).deleteOne({ _id: new mongo.ObjectId(req.body.accountId) }, function (err, res) {
+            db.db(config.dbName).collection(config.collections.accounts).deleteOne({ _id: new mongo.ObjectId(req.params.id) }, function (err, res) {
 
                 db.close();
 
