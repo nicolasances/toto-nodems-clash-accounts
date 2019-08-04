@@ -6,7 +6,8 @@ exports.accountTO = (doc) => {
         user: doc.user,
         tag: doc.tag,
         name: doc.name,
-        current: doc.current
+        current: doc.current,
+        clan: doc.clan
     }
 
 }
